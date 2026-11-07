@@ -255,6 +255,49 @@ footer{font-size:.78rem;color:var(--muted);padding-block:22px}
 .log{width:100%}
 @media (max-width:900px){.agenda.six{grid-template-columns:1fr 1fr}.cue{grid-template-columns:1fr 1fr}.flow{grid-template-columns:1fr 1fr}}
 @media (max-width:560px){.cue,.flow{grid-template-columns:1fr}}
+
+/* chat database */
+.chatdb{background:var(--surface);border-radius:12px;padding:20px;display:grid;gap:16px}
+.ctopics{display:flex;flex-wrap:wrap;gap:8px}
+.ctopics button{font:inherit;font-size:.92rem;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:8px;padding:6px 12px;cursor:pointer;text-align:left;line-height:1.3}
+.ctopics button small{display:block;font-size:.7rem;color:var(--muted)}
+.ctopics button[aria-pressed="true"]{background:var(--soft);border-color:var(--teal);color:var(--teal-ink);font-weight:700}
+.cpanel h4{font-family:var(--serif);font-size:1.35rem;color:var(--ink);margin-bottom:10px}
+.cpanel h4 small{font-family:var(--sans);font-size:.78rem;color:var(--coral);margin-left:8px;font-weight:700}
+.cq{list-style:none;margin:0;padding:0;display:grid;gap:8px;counter-reset:q}
+.cq li{background:var(--bg);border-radius:10px;padding:12px 16px;counter-increment:q;display:grid;grid-template-columns:auto 1fr auto;gap:4px 12px;align-items:start}
+.cq li::before{content:counter(q);font-family:var(--serif);font-size:1.3rem;color:var(--teal);line-height:1.3}
+.cq .qq{font-size:1.08rem;font-weight:700;line-height:1.55}
+.cq .rr{grid-column:2/4;color:var(--teal-ink);background:var(--soft);border-radius:8px;padding:8px 12px;font-size:.95rem}
+.cq .rr::before{content:"可以這樣接：";font-weight:700;color:var(--coral)}
+.cq button{font:inherit;font-size:.8rem;border:1px solid var(--line);background:var(--surface);color:var(--teal-ink);border-radius:99px;padding:2px 10px;cursor:pointer;white-space:nowrap}
+.cpanel .row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+@media (max-width:560px){.cq li{grid-template-columns:auto 1fr}.cq li button{grid-column:2}.cq .rr{grid-column:1/-1}}
+
+/* presentation (16:9 slides) mode */
+.presbtn{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:30;font:inherit;font-size:.92rem;font-weight:700;border:0;border-radius:99px;padding:10px 18px;background:var(--teal);color:#fff;box-shadow:0 6px 20px rgba(6,156,167,.35);cursor:pointer}
+.stage{position:fixed;inset:0;z-index:50;background:#1f2a2b;display:grid;place-items:center}
+.stage[hidden]{display:none!important}
+.frame{position:relative;background:var(--bg);overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.35)}
+.canvas{position:absolute;left:0;top:0;width:1280px;height:720px;transform-origin:0 0}
+.slide{position:absolute;left:0;top:0;transform-origin:0 0;padding:44px 64px}
+.slide .wrap{max-width:none;padding-left:0;padding-right:0}
+.slide>.sub{padding-top:0}
+.slide>.hero{padding-block:0}
+.slide>.speaker{border-top:0;padding-block:0}
+.slide>section.closing{margin-top:0}
+.slide .phead{margin-bottom:0}
+.slide.cover .phead{margin-top:180px}
+.slide.cover .phead .pno{font-size:7rem}
+.slide.cover .phead h2{font-size:3rem}
+.sbar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(10px + env(safe-area-inset-bottom,0px));display:flex;justify-content:center;align-items:center;gap:8px;padding:6px 10px;border-radius:99px;background:rgba(31,42,43,.85);z-index:51;opacity:.4;transition:opacity .2s;max-width:calc(100vw - 24px);flex-wrap:wrap}
+.sbar:hover,.sbar:focus-within{opacity:1}
+.sbar button{font:inherit;font-size:.88rem;border:0;border-radius:99px;padding:6px 14px;background:rgba(255,255,255,.92);color:#222;cursor:pointer}
+.sbar span{color:#fff;font-family:var(--mono);font-size:.85rem;min-width:70px;text-align:center}
+.sprog{position:fixed;left:0;top:0;height:3px;background:var(--coral);z-index:52;transition:width .2s}
+body.presenting{overflow:hidden}
+@media (max-height:500px){.sbar{gap:4px;padding:4px 6px}.sbar button{padding:3px 10px;font-size:.76rem}.sbar span{font-size:.75rem;min-width:52px}}
+@media print{.presbtn,.stage{display:none!important}}
 </style>
 </head><body>
 
@@ -316,7 +359,7 @@ footer{font-size:.78rem;color:var(--muted);padding-block:22px}
 
 <!-- ============ ICE-BREAKER ============ -->
 <section class="part ice" id="ice"><div class="wrap">
-  <div class="phead"><span class="pno">0</span><span class="eyebrow">Ice-breaker</span><h2>先唱一首、猜一位，再開始上課</h2></div>
+  <div class="phead"><span class="pno">0</span><span class="eyebrow">Ice-breaker</span><h2>先唱一首、猜一位、聊一聊，再開始上課</h2></div>
   <div class="cols">
     <div class="box"><h4>破冰 ①　聽前奏，猜金曲</h4><ol><li>選一組歌單（每組 20 首），聽前奏分組搶答。</li><li>追問一句：「這首歌讓你想起什麼？」</li><li>到個案家：用手機播前奏，坐在旁邊一起聽，不比快，跟著哼就算答對。</li></ol></div>
     <div class="box alt"><h4>破冰 ②　看圖片，猜老藝人</h4><ol><li>手機或平板打開，一次給個案看一位藝人。</li><li>先讓大家猜，再按「公布答案」。</li><li>按「一起聊聊」追問：「你看過他哪部戲、聽過哪首歌？」</li></ol></div>
@@ -335,6 +378,27 @@ footer{font-size:.78rem;color:var(--muted);padding-block:22px}
       <div class="in one"><p><b>答案：B　洪一峰</b>。「寶島低音歌王」，代表作〈舊情綿綿〉。三個兒子洪榮宏、洪敬堯、洪榮良，都走上音樂創作與演唱的路。</p><p class="note">追問長輩：「你的孩子或孫子，有誰遺傳到你的才藝？」</p></div></details>
   </div>
   <p class="quote">教案三步驟：<b>看</b>（照片、影片）→ <b>猜</b>（給提示，猜對大家拍手）→ <b>聊</b>（從答案延伸到自己的故事）。猜不出來沒關係，聊天才是重點。</p>
+
+  <div class="sub" id="chat">
+    <h3>破冰 ③　居家聊天資料庫：聊天，就是最好的非藥物照護<small>Conversation Starters</small></h3>
+    <p class="intro">不用道具、不用場地，坐下來好好聊就有效：喚起記憶、練習說話、讓長輩被聽見。難的是「要聊什麼、從哪裡開口」。這裡準備了 <b>40 個主題、200 題提問</b>：北海岸在地 20 題、台灣人共同回憶 20 題，每一題都附上「可以這樣接話」。</p>
+    <div class="cols">
+      <div class="box"><h4>怎麼用</h4><ol><li>先從他的家鄉、職業挑一個主題。</li><li>一次問一題，問完等一等，讓他慢慢想。</li><li>他回答後，用「接話」延伸，不要急著問下一題。</li><li>他說得起勁就跟著聊，題目不必問完。</li></ol></div>
+      <div class="box alt"><h4>聊天的小提醒</h4><ul><li>不考試：不問「你記不記得」，改問「那時候是什麼樣子？」</li><li>說錯不糾正，跟著他的故事走。</li><li>多請教：「可以教我嗎？」讓他當老師。</li><li>累了、難過了就停，換聽一首歌。</li></ul></div>
+    </div>
+  </div>
+  <div class="sub">
+    <h3>居家聊天資料庫：挑一個主題，開始聊<small>40 Topics · 200 Questions</small></h3>
+    <div class="chatdb">
+      <div class="seg" role="group" aria-label="選擇主題類別">
+        <button type="button" data-cat="north" aria-pressed="true">北海岸在地（20）</button>
+        <button type="button" data-cat="common" aria-pressed="false">台灣人共同回憶（20）</button>
+        <button type="button" class="btn pri" id="chatRand">隨機一個主題</button>
+      </div>
+      <div class="ctopics" id="ctopics"></div>
+      <div class="cpanel" id="cpanel" aria-live="polite"></div>
+    </div>
+  </div>
 </div></section>
 
 <div class="wrap">
@@ -574,7 +638,10 @@ footer{font-size:.78rem;color:var(--muted);padding-block:22px}
         <div class="in"><div><h5>步驟</h5><ol><li>坐到站 5 下（你在旁邊保護）。</li><li>坐下後，拿 1–16 牌 3 張，由小到大排好。</li><li>再做 5 下坐到站。</li><li>回來找「加起來是 10」的兩張。</li></ol></div>
         <div><h5>安全</h5><ul><li>椅子靠牆、不會滑。</li><li>站起來先站穩，再坐下。</li><li>累了就改成坐姿踢腿。</li></ul></div></div></details>
     </div>
-    <div class="tablewrap" style="margin-top:16px"><table>
+  </div>
+  <div class="sub">
+    <h3>研究與分級：怎麼加難度<small>Evidence &amp; Grading</small></h3>
+    <div class="tablewrap"><table>
       <tr><th>介入方式</th><th>認知效果 SMD</th><th>身體功能 SMD</th></tr>
       <tr><td>同時做（一邊運動一邊動腦）</td><td class="num">0.43</td><td class="num">0.44</td></tr>
       <tr><td>先運動、後動腦</td><td class="num">0.34</td><td class="num">0.43</td></tr>
@@ -1011,7 +1078,261 @@ footer{font-size:.78rem;color:var(--muted);padding-block:22px}
 <svg class="qr" role="img" aria-label="QR code" version="1.1" viewBox="0 0 37 37" xmlns="http://www.w3.org/2000/svg"><path d="M2,2H3V3H2zM3,2H4V3H3zM4,2H5V3H4zM5,2H6V3H5zM6,2H7V3H6zM7,2H8V3H7zM8,2H9V3H8zM11,2H12V3H11zM12,2H13V3H12zM15,2H16V3H15zM19,2H20V3H19zM20,2H21V3H20zM21,2H22V3H21zM22,2H23V3H22zM23,2H24V3H23zM24,2H25V3H24zM25,2H26V3H25zM28,2H29V3H28zM29,2H30V3H29zM30,2H31V3H30zM31,2H32V3H31zM32,2H33V3H32zM33,2H34V3H33zM34,2H35V3H34zM2,3H3V4H2zM8,3H9V4H8zM12,3H13V4H12zM15,3H16V4H15zM16,3H17V4H16zM17,3H18V4H17zM18,3H19V4H18zM22,3H23V4H22zM23,3H24V4H23zM24,3H25V4H24zM28,3H29V4H28zM34,3H35V4H34zM2,4H3V5H2zM4,4H5V5H4zM5,4H6V5H5zM6,4H7V5H6zM8,4H9V5H8zM10,4H11V5H10zM11,4H12V5H11zM12,4H13V5H12zM14,4H15V5H14zM15,4H16V5H15zM18,4H19V5H18zM21,4H22V5H21zM22,4H23V5H22zM23,4H24V5H23zM24,4H25V5H24zM25,4H26V5H25zM26,4H27V5H26zM28,4H29V5H28zM30,4H31V5H30zM31,4H32V5H31zM32,4H33V5H32zM34,4H35V5H34zM2,5H3V6H2zM4,5H5V6H4zM5,5H6V6H5zM6,5H7V6H6zM8,5H9V6H8zM10,5H11V6H10zM12,5H13V6H12zM13,5H14V6H13zM14,5H15V6H14zM16,5H17V6H16zM18,5H19V6H18zM19,5H20V6H19zM24,5H25V6H24zM26,5H27V6H26zM28,5H29V6H28zM30,5H31V6H30zM31,5H32V6H31zM32,5H33V6H32zM34,5H35V6H34zM2,6H3V7H2zM4,6H5V7H4zM5,6H6V7H5zM6,6H7V7H6zM8,6H9V7H8zM10,6H11V7H10zM12,6H13V7H12zM14,6H15V7H14zM15,6H16V7H15zM17,6H18V7H17zM19,6H20V7H19zM20,6H21V7H20zM21,6H22V7H21zM22,6H23V7H22zM23,6H24V7H23zM25,6H26V7H25zM28,6H29V7H28zM30,6H31V7H30zM31,6H32V7H31zM32,6H33V7H32zM34,6H35V7H34zM2,7H3V8H2zM8,7H9V8H8zM10,7H11V8H10zM12,7H13V8H12zM13,7H14V8H13zM15,7H16V8H15zM16,7H17V8H16zM17,7H18V8H17zM18,7H19V8H18zM20,7H21V8H20zM22,7H23V8H22zM23,7H24V8H23zM24,7H25V8H24zM28,7H29V8H28zM34,7H35V8H34zM2,8H3V9H2zM3,8H4V9H3zM4,8H5V9H4zM5,8H6V9H5zM6,8H7V9H6zM7,8H8V9H7zM8,8H9V9H8zM10,8H11V9H10zM12,8H13V9H12zM14,8H15V9H14zM16,8H17V9H16zM18,8H19V9H18zM20,8H21V9H20zM22,8H23V9H22zM24,8H25V9H24zM26,8H27V9H26zM28,8H29V9H28zM29,8H30V9H29zM30,8H31V9H30zM31,8H32V9H31zM32,8H33V9H32zM33,8H34V9H33zM34,8H35V9H34zM10,9H11V10H10zM11,9H12V10H11zM14,9H15V10H14zM16,9H17V10H16zM17,9H18V10H17zM23,9H24V10H23zM24,9H25V10H24zM2,10H3V11H2zM4,10H5V11H4zM5,10H6V11H5zM6,10H7V11H6zM7,10H8V11H7zM8,10H9V11H8zM11,10H12V11H11zM12,10H13V11H12zM13,10H14V11H13zM15,10H16V11H15zM16,10H17V11H16zM17,10H18V11H17zM19,10H20V11H19zM24,10H25V11H24zM25,10H26V11H25zM28,10H29V11H28zM29,10H30V11H29zM30,10H31V11H30zM31,10H32V11H31zM32,10H33V11H32zM3,11H4V12H3zM4,11H5V12H4zM5,11H6V12H5zM6,11H7V12H6zM10,11H11V12H10zM11,11H12V12H11zM12,11H13V12H12zM14,11H15V12H14zM18,11H19V12H18zM21,11H22V12H21zM22,11H23V12H22zM25,11H26V12H25zM28,11H29V12H28zM29,11H30V12H29zM31,11H32V12H31zM32,11H33V12H32zM34,11H35V12H34zM2,12H3V13H2zM4,12H5V13H4zM8,12H9V13H8zM9,12H10V13H9zM11,12H12V13H11zM13,12H14V13H13zM14,12H15V13H14zM17,12H18V13H17zM18,12H19V13H18zM24,12H25V13H24zM26,12H27V13H26zM27,12H28V13H27zM28,12H29V13H28zM30,12H31V13H30zM32,12H33V13H32zM33,12H34V13H33zM2,13H3V14H2zM9,13H10V14H9zM13,13H14V14H13zM14,13H15V14H14zM16,13H17V14H16zM17,13H18V14H17zM21,13H22V14H21zM22,13H23V14H22zM23,13H24V14H23zM27,13H28V14H27zM30,13H31V14H30zM31,13H32V14H31zM32,13H33V14H32zM2,14H3V15H2zM3,14H4V15H3zM4,14H5V15H4zM5,14H6V15H5zM7,14H8V15H7zM8,14H9V15H8zM10,14H11V15H10zM19,14H20V15H19zM21,14H22V15H21zM24,14H25V15H24zM26,14H27V15H26zM27,14H28V15H27zM29,14H30V15H29zM30,14H31V15H30zM31,14H32V15H31zM34,14H35V15H34zM2,15H3V16H2zM3,15H4V16H3zM10,15H11V16H10zM11,15H12V16H11zM14,15H15V16H14zM16,15H17V16H16zM17,15H18V16H17zM18,15H19V16H18zM21,15H22V16H21zM22,15H23V16H22zM23,15H24V16H23zM24,15H25V16H24zM25,15H26V16H25zM28,15H29V16H28zM33,15H34V16H33zM34,15H35V16H34zM2,16H3V17H2zM4,16H5V17H4zM5,16H6V17H5zM7,16H8V17H7zM8,16H9V17H8zM11,16H12V17H11zM12,16H13V17H12zM14,16H15V17H14zM15,16H16V17H15zM16,16H17V17H16zM22,16H23V17H22zM23,16H24V17H23zM24,16H25V17H24zM27,16H28V17H27zM28,16H29V17H28zM30,16H31V17H30zM31,16H32V17H31zM32,16H33V17H32zM33,16H34V17H33zM4,17H5V18H4zM6,17H7V18H6zM7,17H8V18H7zM9,17H10V18H9zM10,17H11V18H10zM12,17H13V18H12zM13,17H14V18H13zM15,17H16V18H15zM18,17H19V18H18zM20,17H21V18H20zM21,17H22V18H21zM22,17H23V18H22zM23,17H24V18H23zM24,17H25V18H24zM27,17H28V18H27zM28,17H29V18H28zM30,17H31V18H30zM31,17H32V18H31zM32,17H33V18H32zM3,18H4V19H3zM4,18H5V19H4zM5,18H6V19H5zM7,18H8V19H7zM8,18H9V19H8zM13,18H14V19H13zM16,18H17V19H16zM19,18H20V19H19zM27,18H28V19H27zM29,18H30V19H29zM30,18H31V19H30zM34,18H35V19H34zM3,19H4V20H3zM5,19H6V20H5zM9,19H10V20H9zM10,19H11V20H10zM12,19H13V20H12zM16,19H17V20H16zM18,19H19V20H18zM20,19H21V20H20zM21,19H22V20H21zM23,19H24V20H23zM24,19H25V20H24zM25,19H26V20H25zM28,19H29V20H28zM29,19H30V20H29zM31,19H32V20H31zM32,19H33V20H32zM33,19H34V20H33zM34,19H35V20H34zM3,20H4V21H3zM4,20H5V21H4zM6,20H7V21H6zM8,20H9V21H8zM10,20H11V21H10zM13,20H14V21H13zM14,20H15V21H14zM16,20H17V21H16zM17,20H18V21H17zM19,20H20V21H19zM20,20H21V21H20zM22,20H23V21H22zM23,20H24V21H23zM24,20H25V21H24zM26,20H27V21H26zM27,20H28V21H27zM29,20H30V21H29zM30,20H31V21H30zM32,20H33V21H32zM33,20H34V21H33zM2,21H3V22H2zM5,21H6V22H5zM7,21H8V22H7zM9,21H10V22H9zM12,21H13V22H12zM15,21H16V22H15zM16,21H17V22H16zM18,21H19V22H18zM21,21H22V22H21zM23,21H24V22H23zM27,21H28V22H27zM29,21H30V22H29zM30,21H31V22H30zM31,21H32V22H31zM32,21H33V22H32zM33,21H34V22H33zM6,22H7V23H6zM8,22H9V23H8zM9,22H10V23H9zM11,22H12V23H11zM13,22H14V23H13zM14,22H15V23H14zM18,22H19V23H18zM19,22H20V23H19zM20,22H21V23H20zM24,22H25V23H24zM26,22H27V23H26zM29,22H30V23H29zM30,22H31V23H30zM31,22H32V23H31zM34,22H35V23H34zM2,23H3V24H2zM3,23H4V24H3zM4,23H5V24H4zM5,23H6V24H5zM6,23H7V24H6zM10,23H11V24H10zM17,23H18V24H17zM19,23H20V24H19zM20,23H21V24H20zM21,23H22V24H21zM22,23H23V24H22zM23,23H24V24H23zM25,23H26V24H25zM28,23H29V24H28zM31,23H32V24H31zM34,23H35V24H34zM2,24H3V25H2zM5,24H6V25H5zM7,24H8V25H7zM8,24H9V25H8zM10,24H11V25H10zM11,24H12V25H11zM12,24H13V25H12zM14,24H15V25H14zM17,24H18V25H17zM18,24H19V25H18zM20,24H21V25H20zM22,24H23V25H22zM23,24H24V25H23zM26,24H27V25H26zM27,24H28V25H27zM28,24H29V25H28zM29,24H30V25H29zM33,24H34V25H33zM2,25H3V26H2zM4,25H5V26H4zM5,25H6V26H5zM7,25H8V26H7zM9,25H10V26H9zM11,25H12V26H11zM14,25H15V26H14zM16,25H17V26H16zM17,25H18V26H17zM20,25H21V26H20zM22,25H23V26H22zM23,25H24V26H23zM24,25H25V26H24zM27,25H28V26H27zM29,25H30V26H29zM30,25H31V26H30zM32,25H33V26H32zM2,26H3V27H2zM4,26H5V27H4zM5,26H6V27H5zM6,26H7V27H6zM8,26H9V27H8zM9,26H10V27H9zM11,26H12V27H11zM12,26H13V27H12zM17,26H18V27H17zM19,26H20V27H19zM21,26H22V27H21zM22,26H23V27H22zM26,26H27V27H26zM27,26H28V27H27zM28,26H29V27H28zM29,26H30V27H29zM30,26H31V27H30zM34,26H35V27H34zM10,27H11V28H10zM11,27H12V28H11zM12,27H13V28H12zM13,27H14V28H13zM14,27H15V28H14zM19,27H20V28H19zM21,27H22V28H21zM24,27H25V28H24zM25,27H26V28H25zM26,27H27V28H26zM30,27H31V28H30zM32,27H33V28H32zM34,27H35V28H34zM2,28H3V29H2zM3,28H4V29H3zM4,28H5V29H4zM5,28H6V29H5zM6,28H7V29H6zM7,28H8V29H7zM8,28H9V29H8zM12,28H13V29H12zM13,28H14V29H13zM16,28H17V29H16zM17,28H18V29H17zM19,28H20V29H19zM23,28H24V29H23zM25,28H26V29H25zM26,28H27V29H26zM28,28H29V29H28zM30,28H31V29H30zM32,28H33V29H32zM33,28H34V29H33zM2,29H3V30H2zM8,29H9V30H8zM10,29H11V30H10zM12,29H13V30H12zM13,29H14V30H13zM14,29H15V30H14zM15,29H16V30H15zM23,29H24V30H23zM24,29H25V30H24zM25,29H26V30H25zM26,29H27V30H26zM30,29H31V30H30zM31,29H32V30H31zM32,29H33V30H32zM2,30H3V31H2zM4,30H5V31H4zM5,30H6V31H5zM6,30H7V31H6zM8,30H9V31H8zM10,30H11V31H10zM11,30H12V31H11zM12,30H13V31H12zM14,30H15V31H14zM15,30H16V31H15zM16,30H17V31H16zM17,30H18V31H17zM20,30H21V31H20zM24,30H25V31H24zM26,30H27V31H26zM27,30H28V31H27zM28,30H29V31H28zM29,30H30V31H29zM30,30H31V31H30zM31,30H32V31H31zM33,30H34V31H33zM34,30H35V31H34zM2,31H3V32H2zM4,31H5V32H4zM5,31H6V32H5zM6,31H7V32H6zM8,31H9V32H8zM10,31H11V32H10zM11,31H12V32H11zM13,31H14V32H13zM17,31H18V32H17zM18,31H19V32H18zM20,31H21V32H20zM21,31H22V32H21zM23,31H24V32H23zM25,31H26V32H25zM26,31H27V32H26zM27,31H28V32H27zM30,31H31V32H30zM31,31H32V32H31zM33,31H34V32H33zM34,31H35V32H34zM2,32H3V33H2zM4,32H5V33H4zM5,32H6V33H5zM6,32H7V33H6zM8,32H9V33H8zM10,32H11V33H10zM11,32H12V33H11zM12,32H13V33H12zM22,32H23V33H22zM23,32H24V33H23zM26,32H27V33H26zM28,32H29V33H28zM29,32H30V33H29zM31,32H32V33H31zM32,32H33V33H32zM2,33H3V34H2zM8,33H9V34H8zM11,33H12V34H11zM12,33H13V34H12zM13,33H14V34H13zM18,33H19V34H18zM23,33H24V34H23zM27,33H28V34H27zM28,33H29V34H28zM30,33H31V34H30zM31,33H32V34H31zM32,33H33V34H32zM2,34H3V35H2zM3,34H4V35H3zM4,34H5V35H4zM5,34H6V35H5zM6,34H7V35H6zM7,34H8V35H7zM8,34H9V35H8zM10,34H11V35H10zM11,34H12V35H11zM14,34H15V35H14zM19,34H20V35H19zM22,34H23V35H22zM25,34H26V35H25zM26,34H27V35H26zM27,34H28V35H27zM29,34H30V35H29zM33,34H34V35H33z" id="qr-path" fill="#000000" fill-opacity="1" fill-rule="nonzero" stroke="none"/></svg></a></span>
 </footer>
 
+
+<button type="button" class="presbtn" id="presBtn" title="一頁一頁 16:9 播放（鍵盤 ← → 換頁，Esc 離開）">▶ 簡報模式</button>
+<div class="stage" id="stage" hidden role="dialog" aria-label="簡報模式">
+  <div class="sprog" id="sprog"></div>
+  <div class="frame" id="frame"><div class="canvas" id="canvas"><div class="slide" id="slide"></div></div></div>
+  <div class="sbar"><button type="button" id="sPrev" aria-label="上一頁">‹ 上一頁</button><span id="sNum">1 / 1</span><button type="button" id="sNext" aria-label="下一頁">下一頁 ›</button><button type="button" id="sFull">全螢幕</button><button type="button" id="sExit">離開 ✕</button></div>
+</div>
 <script>
+// 居家聊天資料庫：每個主題 5 題提問＋居服員可以這樣接話（r）
+var CHAT = {
+north: [
+ {t:"磺港蹦火仔", k:"金山・討海", q:[
+  ["阿公，你有看過金山磺港的「蹦火仔」嗎？","晚上船頭一點火就「蹦」一聲，火光照在海上，聽說魚都會跳出來，真厲害。"],
+  ["那個火是怎麼點起來的？","以前是用磺石（電石）加水生出氣來點火，你們那時候也這樣用嗎？"],
+  ["都是什麼季節、幾點出海？","夏天晚上比較多對不對？大家都在睡覺，你們就出海，好辛苦。"],
+  ["抓到的魚叫什麼？怎麼吃？","青鱗仔小小一尾，曬乾、煎一煎就很下飯，你最喜歡怎麼吃？"],
+  ["現在還有人在做嗎？","聽說全台灣只剩金山還保留這種捕魚法，你們這一輩是最懂的人。"]]},
+ {t:"金山老街吃鴨肉", k:"金山・美食", q:[
+  ["金山老街你最常去吃什麼？","很多人說來金山一定要吃鴨肉，你覺得哪一攤最好吃？"],
+  ["以前老街是什麼樣子？","那時候人沒有這麼多吧？是不是都是在地人在買菜、買東西？"],
+  ["鴨肉要沾什麼醬才對味？","有人愛沾甜辣醬、有人加薑絲，你習慣怎麼吃？"],
+  ["過年過節會去老街買什麼？","拜拜要用的東西都在那裡買嗎？那時候熱鬧嗎？"],
+  ["老街附近的廟你常去拜嗎？","廟口一直都是大家聊天的地方，你在那裡遇過什麼老朋友？"]]},
+ {t:"金山地瓜與芋頭", k:"金山・農作", q:[
+  ["以前家裡有種地瓜嗎？","金山地瓜很有名，聽說這裡的土種出來特別鬆、特別甜。"],
+  ["地瓜要怎麼種、怎麼挖？","剪藤插下去就會長嗎？挖的時候是不是全家一起下田？"],
+  ["小時候吃地瓜都怎麼煮？","地瓜簽稀飯、烤地瓜、煮甜湯，你們家最常吃哪一種？"],
+  ["你覺得芋頭要怎麼煮最好吃？","芋頭粿、芋頭米粉、芋頭甜湯，光聽就流口水。"],
+  ["烤地瓜有什麼秘訣？","以前是不是用土窯（焢窯）烤？那個香味一定很難忘。"]]},
+ {t:"泡溫泉", k:"金山・溫泉", q:[
+  ["阿嬤，你喜歡泡溫泉嗎？","金山就有溫泉，不用跑很遠，好幸福。"],
+  ["以前大家都去哪裡泡？","那時候是不是有公共浴池，大家一起去洗？"],
+  ["泡完溫泉身體有什麼感覺？","冬天泡完全身暖起來，手腳都不冰了對不對？"],
+  ["溫泉水聞起來是什麼味道？","有的有硫磺味，像蛋的味道，你習慣嗎？"],
+  ["泡溫泉要注意什麼？","不要泡太久、起來要慢慢站，你以前也是這樣提醒家人嗎？"]]},
+ {t:"野柳女王頭", k:"萬里・景點", q:[
+  ["你去過野柳看女王頭嗎？","那塊石頭真的很像一個女王的頭，誰第一個這樣叫的呢？"],
+  ["第一次去野柳是跟誰去？","是學校遠足、還是帶孩子去玩？"],
+  ["那邊還有什麼奇怪的石頭？","有像蠟燭的、像豆腐的，你覺得最像什麼？"],
+  ["聽說女王頭的脖子越來越細了？","風吹海打，石頭也會老，就跟人一樣要好好照顧。"],
+  ["以前野柳附近是做什麼的？","很多人在討海、開漁船對不對？"]]},
+ {t:"萬里蟹與漁港海產", k:"萬里・漁港", q:[
+  ["秋天是不是吃螃蟹的季節？","萬里蟹很有名，秋天的螃蟹最肥。"],
+  ["你最喜歡吃哪一種螃蟹？","花蟹、石蟳、三點蟹，你吃得出差別嗎？"],
+  ["螃蟹要怎麼煮才好吃？","清蒸最能吃出甜味，還是你喜歡炒薑蔥？"],
+  ["以前去漁港買魚是什麼情形？","船一回來大家就圍上去，要很會挑對不對？"],
+  ["怎麼看魚新不新鮮？","眼睛亮、肉有彈性……你是挑魚高手吧，教教我。"]]},
+ {t:"石門肉粽與十八王公", k:"石門・美食", q:[
+  ["你吃過石門肉粽嗎？","很多人去北海岸都會買石門肉粽，你覺得好吃在哪裡？"],
+  ["你們家端午節自己包粽子嗎？","誰負責包？你包的是北部粽還是南部粽？"],
+  ["粽子裡你最愛包什麼料？","香菇、蛋黃、栗子、花生……你家一定有招牌料。"],
+  ["十八王公廟的故事你聽過嗎？","聽說是一隻忠心的狗陪著主人，大家很感動才蓋廟。"],
+  ["以前去十八王公拜拜熱鬧嗎？","晚上也很多人去對不對？那時候怎麼去的？"]]},
+ {t:"富貴角燈塔", k:"石門・燈塔", q:[
+  ["你知道台灣最北邊的燈塔在哪裡嗎？","就在石門的富貴角，黑白條紋的那一座。"],
+  ["你有走到燈塔那邊過嗎？","那裡風很大，帽子都會被吹走吧？"],
+  ["以前燈塔對討海人有什麼用？","晚上看到燈就知道到哪裡了，很安心。"],
+  ["站在海邊看海，你會想到什麼？","有人想到出海的家人，有人想到小時候，你呢？"],
+  ["你覺得北海岸的風跟別的地方有什麼不一樣？","冬天的東北季風一吹，真的很冷又很濕。"]]},
+ {t:"石門洞與白沙灣", k:"石門・海邊", q:[
+  ["石門洞你去過嗎？","海水把石頭打出一個大洞，像一道門，石門的名字就是這樣來的。"],
+  ["夏天會去白沙灣玩水嗎？","白白的沙灘很漂亮，小孩子最愛去。"],
+  ["以前去海邊都玩什麼？","撿貝殼、堆沙、抓小螃蟹，你最會哪一樣？"],
+  ["海邊會帶什麼去吃？","帶飯糰、西瓜？還是在海邊買東西吃？"],
+  ["你會游泳嗎？是誰教你的？","海邊長大的人很多都是自己在海裡學會的吧？"]]},
+ {t:"老梅綠石槽", k:"石門・自然", q:[
+  ["春天老梅海邊的石頭會變綠色，你看過嗎？","石頭上長滿綠綠的海藻，一條一條，好特別。"],
+  ["小時候在那邊玩過嗎？","石頭很滑，走路要小心，你一定摔過吧？"],
+  ["以前大家在礁石上撿什麼？","撿螺仔、海菜，撿回家煮湯對不對？"],
+  ["現在很多人去拍照，你覺得呢？","以前是生活的地方，現在變成觀光景點了。"],
+  ["你最喜歡北海岸哪一個季節？","春天綠、夏天熱鬧、冬天風大，各有味道。"]]},
+ {t:"三芝茭白筍與梯田", k:"三芝・農作", q:[
+  ["你吃過三芝的茭白筍嗎？","白白嫩嫩的，烤一烤沾醬就很好吃。"],
+  ["茭白筍要怎麼種？","是不是要種在水田裡？採的時候腳都泡在水裡吧？"],
+  ["三芝的梯田你看過嗎？","一層一層像樓梯，種田的人真的很辛苦。"],
+  ["以前種田最累的是什麼？","插秧、割稻都要彎腰一整天，你做過哪一樣？"],
+  ["收成的時候家裡怎麼慶祝？","有沒有煮一桌好料，請來幫忙的人一起吃？"]]},
+ {t:"淡水小吃：阿給、魚丸、鐵蛋", k:"淡水・美食", q:[
+  ["去淡水你一定會吃什麼？","阿給、魚丸湯、鐵蛋，你最愛哪一個？"],
+  ["你知道阿給裡面包什麼嗎？","油豆腐裡塞冬粉，再用魚漿封起來，淋上紅紅的醬。"],
+  ["鐵蛋那麼硬，你咬得動嗎？","要滷很久很久才會變黑變硬，越嚼越香。"],
+  ["淡水老街以前是什麼樣子？","河邊有船、有人在賣魚，跟現在不太一樣吧？"],
+  ["你在淡水看過夕陽嗎？","河口的夕陽很有名，你是跟誰一起看的？"]]},
+ {t:"淡水線火車", k:"淡水・交通", q:[
+  ["你坐過以前台北到淡水的火車嗎？","那條淡水線火車後來停駛，改成現在的捷運。"],
+  ["那時候坐火車要多久？","慢慢搖，一路看風景，比現在慢很多吧？"],
+  ["車上都是些什麼人？","上學的、去賣菜的、去上班的，很熱鬧吧？"],
+  ["火車票長什麼樣子？","是硬硬的小紙卡嗎？還要剪票對不對？"],
+  ["你第一次坐火車是去哪裡？","一定很興奮吧，還記得那天的天氣嗎？"]]},
+ {t:"坐車去台北", k:"北海岸・交通", q:[
+  ["以前從北海岸去台北要怎麼去？","坐客運、繞山路，是不是要坐很久？"],
+  ["第一次去台北是做什麼？","去找工作、去看病，還是去玩？"],
+  ["坐車會不會暈車？","山路彎來彎去，很多人都會暈，你有什麼妙招？"],
+  ["到了台北覺得哪裡最不一樣？","房子好高、人好多，鄉下來的人一定嚇一跳。"],
+  ["會帶什麼伴手禮去給台北的親戚？","帶地瓜、魚乾，台北人一定很喜歡。"]]},
+ {t:"陽明山擎天崗放牛", k:"山上・回憶", q:[
+  ["你去過擎天崗看牛嗎？","那邊以前就是放牛的牧場，草地一大片。"],
+  ["小時候有放過牛嗎？","牽牛去吃草、騎在牛背上，好多人小時候都做過。"],
+  ["牛在以前家裡有多重要？","犁田、拉車都靠牠，是家裡的好幫手。"],
+  ["上山都看到什麼？","芒草、硫磺煙、花，季節不一樣風景就不一樣。"],
+  ["春天去陽明山賞花嗎？","櫻花、杜鵑、海芋，你最喜歡哪一種？"]]},
+ {t:"海邊撿海菜、撿螺仔", k:"北海岸・生活", q:[
+  ["退潮的時候你會去海邊撿東西嗎？","撿螺仔、海菜，帶回家就是一道菜。"],
+  ["你知道石花菜要怎麼做成石花凍嗎？","洗乾淨、曬乾，再煮出膠，冰起來好消暑。"],
+  ["撿海菜要注意什麼？","石頭很滑、要看潮水，你一定很有經驗。"],
+  ["撿回來的螺仔怎麼煮？","炒九層塔還是煮湯？用牙籤挑來吃吧。"],
+  ["小時候誰帶你去海邊？","是阿爸阿母、還是跟鄰居小孩一起去？"]]},
+ {t:"野柳神明淨港", k:"萬里・廟會", q:[
+  ["你看過野柳元宵節的神明淨港嗎？","轎夫抬著神明跳進漁港，好特別的拜拜。"],
+  ["為什麼要把神明抬到海裡？","祈求漁港平安、討海人出海順利。"],
+  ["那天是不是很熱鬧？","鞭炮聲、鑼鼓聲，大家都擠在港邊看吧？"],
+  ["你們家元宵節還做什麼？","吃湯圓、提燈籠、猜燈謎，你最喜歡哪一樣？"],
+  ["你常去拜的是哪一間廟？","那間廟的神明有沒有保佑過你什麼事？"]]},
+ {t:"東北季風的冬天", k:"北海岸・天氣", q:[
+  ["北海岸的冬天是不是又濕又冷？","東北季風一吹，雨下個不停，衣服都曬不乾。"],
+  ["以前冬天怎麼保暖？","穿好幾件、用熱水袋、烤火，你們家用什麼？"],
+  ["衣服曬不乾怎麼辦？","放在灶腳旁邊烘、還是用炭火？以前的人真有辦法。"],
+  ["冬天最想吃什麼？","薑母鴨、麻油雞、熱湯圓，吃了全身都暖。"],
+  ["冬天還出海嗎？","浪大很危險，那時候家裡的人一定很擔心。"]]},
+ {t:"石頭厝", k:"北海岸・老房子", q:[
+  ["你小時候住的房子是什麼樣子？","北海岸以前很多用石頭蓋的房子，叫石頭厝。"],
+  ["石頭厝住起來感覺怎麼樣？","聽說冬暖夏涼，比水泥房子還舒服。"],
+  ["家裡有幾個房間？睡在哪裡？","以前兄弟姊妹很多，是不是大家擠一張通鋪？"],
+  ["廚房、灶腳在哪一邊？","煮飯要燒柴，小孩是不是負責顧火？"],
+  ["那個老房子現在還在嗎？","如果能回去看一眼，你最想看哪一個角落？"]]},
+ {t:"討海人的家", k:"北海岸・家人", q:[
+  ["家裡有人出海捕魚嗎？","討海很辛苦，家裡的人都要等船回來才放心。"],
+  ["船出海的時候，家裡在做什麼？","補漁網、曬魚、顧小孩，女人也很能幹。"],
+  ["補漁網要怎麼補？","一個結一個結打，手要很巧，可以教我嗎？"],
+  ["船回來那天最開心的是什麼？","看到人平安回來，還有滿船的魚。"],
+  ["討海人有什麼禁忌？","聽說吃魚不能翻面，你們家也這樣嗎？"]]}
+],
+common: [
+ {t:"柑仔店", k:"童年", q:[
+  ["小時候巷口的柑仔店都賣什麼？","糖果、醬油、米酒、玩具，什麼都有。"],
+  ["你最愛買什麼零食？","酸梅、麥芽糖、王子麵，你的口袋零錢都花在哪？"],
+  ["是不是可以先賒帳？","老闆拿本子記一記，月底再還，大家都很有人情味。"],
+  ["有沒有抽過「抽抽樂」？","抽到大獎好開心，抽到安慰獎也很期待下一次。"],
+  ["大人叫你去買什麼？","買醬油、買米酒，還順便買一顆糖給自己吧？"]]},
+ {t:"廟口看布袋戲", k:"娛樂", q:[
+  ["小時候在廟口看過布袋戲嗎？","戲台一搭，大人小孩都搬椅子去看。"],
+  ["你最喜歡哪個布袋戲角色？","史艷文、藏鏡人，你是站哪一邊的？"],
+  ["電視播布袋戲的時候大家在做什麼？","聽說那時候大家都趕回家看，街上都沒人。"],
+  ["你會學戲裡的口白嗎？","「苦海女神龍」……你還記得哪一句？"],
+  ["看戲的時候都吃什麼？","廟口的小攤子，香腸、枝仔冰，最好吃。"]]},
+ {t:"黑白電視與三台", k:"娛樂", q:[
+  ["家裡第一台電視是什麼時候買的？","那時候有電視很厲害，鄰居都跑來看吧？"],
+  ["以前只有三台，你最常看哪一台？","台視、中視、華視，節目不多但大家都看一樣的。"],
+  ["你最愛看什麼節目？","連續劇、綜藝節目、歌仔戲，你是哪一派？"],
+  ["電視畫面不清楚怎麼辦？","去屋頂轉天線，下面的人喊「好了好了」。"],
+  ["晚上幾點就要關電視睡覺？","那時候電視會收播，唱完國歌就沒了。"]]},
+ {t:"收音機與廣播", k:"娛樂", q:[
+  ["以前家裡有收音機嗎？","收音機是寶貝，大家圍著聽。"],
+  ["你都聽什麼節目？","聽歌、聽廣播劇、聽講古，你喜歡哪一種？"],
+  ["有沒有聽廣播學唱歌？","一邊做事一邊聽，聽著聽著就會唱了。"],
+  ["收音機壞了怎麼辦？","拍一拍、轉一轉，有時候拍一下就好了。"],
+  ["你最愛的歌是哪一首？","我們現在用手機放給你聽，好不好？"]]},
+ {t:"戲院看電影", k:"娛樂", q:[
+  ["你還記得第一次進戲院看電影嗎？","大銀幕、黑漆漆的，一定很新鮮。"],
+  ["那時候看什麼片？","台語片、黃梅調、武俠片，你最喜歡哪一部？"],
+  ["跟誰去看電影？","是跟朋友、還是跟另一半約會？"],
+  ["戲院門口賣什麼？","瓜子、汽水、烤魷魚，邊看邊吃。"],
+  ["那時候最紅的明星是誰？","林青霞、秦漢、凌波……你最迷哪一位？"]]},
+ {t:"過年", k:"節日", q:[
+  ["小時候過年最期待什麼？","穿新衣、拿紅包、放鞭炮，一年只有一次。"],
+  ["過年前家裡要準備什麼？","大掃除、蒸年糕、做發粿，全家都動起來。"],
+  ["年夜飯一定要有哪一道菜？","長年菜、雞、魚，每一道都有好意思。"],
+  ["拿到紅包都做什麼？","被媽媽收走說要幫你存，你有沒有偷留一點？"],
+  ["初二回娘家是什麼情形？","帶孩子回去，娘家準備一桌好菜等你。"]]},
+ {t:"辦桌", k:"節日", q:[
+  ["以前辦桌都在哪裡辦？","在路邊、廟口搭棚子，請整村的人來吃。"],
+  ["辦桌你最愛哪一道菜？","佛跳牆、紅蟳米糕、魚翅羹，光想就流口水。"],
+  ["總舖師是怎麼煮那麼多菜的？","大鍋大灶，一群人幫忙，好厲害。"],
+  ["吃不完的菜怎麼辦？","打包回家，第二天變成菜尾湯，更好吃。"],
+  ["你參加過最熱鬧的一場辦桌是什麼？","是誰結婚、還是誰做壽？"]]},
+ {t:"中秋節", k:"節日", q:[
+  ["中秋節你們家都怎麼過？","賞月、吃月餅、吃柚子，一家人坐在外面聊天。"],
+  ["你喜歡哪一種月餅？","綠豆椪、蛋黃酥、廣式月餅，你是哪一派？"],
+  ["小時候有沒有把柚子皮戴在頭上？","戴起來像帽子，每個小孩都玩過。"],
+  ["嫦娥奔月的故事你會講嗎？","你可以講給我聽嗎？我想聽你的版本。"],
+  ["現在中秋流行烤肉，你覺得呢？","以前沒有烤肉，以前是怎麼過的？"]]},
+ {t:"端午節", k:"節日", q:[
+  ["端午節你們家包粽子嗎？","一大串掛起來，煮好整個家都是香味。"],
+  ["中午有沒有試著讓蛋站起來？","聽說端午中午蛋可以立起來，你成功過嗎？"],
+  ["你看過划龍舟嗎？","鑼鼓一響，大家拚命划，岸上的人一直喊加油。"],
+  ["門口會掛什麼？","艾草、榕樹枝，說可以避邪。"],
+  ["小孩子身上掛什麼？","香包！你還記得是什麼形狀的嗎？"]]},
+ {t:"小時候的童玩", k:"童年", q:[
+  ["小時候最愛玩什麼？","尪仔標、彈珠、跳格子、跳繩，你最拿手哪一個？"],
+  ["打陀螺你會嗎？","繩子一拉，陀螺轉好久，好厲害。"],
+  ["女孩子都玩什麼？","跳橡皮筋、丟沙包、扮家家酒，你玩哪一種？"],
+  ["玩具都是買的還是自己做的？","竹子、紙、空罐都能變成玩具，以前的小孩真聰明。"],
+  ["玩到天黑誰來叫你回家？","媽媽站在門口一喊，大家就散了。"]]},
+ {t:"上學與便當", k:"童年", q:[
+  ["你小時候怎麼去上學？","走路、打赤腳，還是坐車？要走多久？"],
+  ["便當裡通常有什麼菜？","一顆荷包蛋、菜脯，就很滿足了。"],
+  ["學校有蒸便當嗎？","早上放進蒸飯箱，中午拿出來熱熱的。"],
+  ["你最喜歡哪一科？","算術、國語、唱歌，還是最愛下課？"],
+  ["有沒有被老師處罰過？","罰站、打手心，現在想起來都會笑。"]]},
+ {t:"寫信與公共電話", k:"生活", q:[
+  ["你以前有寫信給誰嗎？","寫給家人、朋友，還是寫情書？"],
+  ["等一封回信要等多久？","每天看郵差來了沒，心情很期待。"],
+  ["第一次打電話是什麼時候？","公共電話要投銅板，講太久還會被後面的人催。"],
+  ["家裡第一支電話是什麼樣子？","轉盤的！撥一個號碼要轉好久。"],
+  ["你還記得誰的電話號碼嗎？","那時候大家都背得起來，好厲害。"]]},
+ {t:"腳踏車與摩托車", k:"生活", q:[
+  ["你學騎腳踏車是誰教的？","後面有人扶著，一放手就自己騎了。"],
+  ["以前的腳踏車長什麼樣子？","大大黑黑的「鐵馬」，後座可以載東西。"],
+  ["有沒有載過人？","載孩子上學、載另一半去約會？"],
+  ["家裡第一台摩托車是什麼牌子？","那時候有摩托車很風光，全家都很寶貝。"],
+  ["騎車去過最遠的地方是哪裡？","一路吹風，你還記得那次看到什麼？"]]},
+ {t:"菜市場", k:"生活", q:[
+  ["以前買菜都去哪個市場？","一大早去，菜最新鮮。"],
+  ["你最會挑哪一種菜？","你可以教我怎麼挑嗎？我常常挑不好。"],
+  ["會跟老闆殺價嗎？","買多了老闆會送蔥，這是菜市場的人情味。"],
+  ["菜籃是什麼樣子？","竹編的菜籃，還是後來的推車？"],
+  ["市場裡有沒有好吃的小吃？","買完菜順便吃一碗，最舒服。"]]},
+ {t:"灶腳煮飯", k:"生活", q:[
+  ["以前家裡的灶腳長什麼樣子？","有大灶、要燒柴，煮飯很辛苦。"],
+  ["誰負責顧火？","小孩是不是常被叫去添柴？"],
+  ["大灶煮的飯有什麼不一樣？","下面有鍋巴，香香脆脆的，大家都搶。"],
+  ["你的拿手菜是什麼？","可以教我怎麼做嗎？第一步要做什麼？"],
+  ["家裡吃飯有什麼規矩？","長輩先動筷子、不能挑食，你們家也是嗎？"]]},
+ {t:"洗衣服", k:"生活", q:[
+  ["以前沒有洗衣機，衣服怎麼洗？","用洗衣板、肥皂，一件一件搓。"],
+  ["是在家裡洗還是去溪邊、井邊洗？","大家一起洗衣服，順便聊天，很熱鬧吧？"],
+  ["家裡第一台洗衣機是什麼時候買的？","有了洗衣機，媽媽們都輕鬆很多。"],
+  ["衣服破了怎麼辦？","自己縫、自己補，你縫衣服很厲害吧？"],
+  ["現在摺衣服，可以請你教我怎麼摺最整齊嗎？","我們一起摺，你摺得比我好看。"]]},
+ {t:"相親與結婚", k:"人生", q:[
+  ["你跟另一半是怎麼認識的？","是相親、別人介紹，還是自己認識的？"],
+  ["第一次見面是什麼情形？","緊張嗎？有沒有偷偷看對方？"],
+  ["結婚那天你穿什麼？","有沒有拍照？照片還在嗎？"],
+  ["結婚有什麼習俗？","過火爐、踩瓦片、撒扇子，你們有做嗎？"],
+  ["你覺得夫妻相處最重要的是什麼？","你這麼多年的經驗，一定很有道理。"]]},
+ {t:"第一份工作", k:"人生", q:[
+  ["你的第一份工作是做什麼？","那時候幾歲？是怎麼找到的？"],
+  ["第一次領薪水買了什麼？","是交給爸媽，還是給自己買一樣東西？"],
+  ["工作最辛苦的是什麼時候？","你是怎麼撐過去的？"],
+  ["工作上有沒有遇到貴人？","那個人教了你什麼？"],
+  ["你做得最有成就感的一件事是什麼？","真了不起，可以多說一點給我聽嗎？"]]},
+ {t:"颱風天", k:"生活", q:[
+  ["以前颱風來，家裡要準備什麼？","釘窗戶、裝水、買蠟燭和泡麵。"],
+  ["停電的晚上都在做什麼？","點蠟燭、聽收音機、全家擠在一起聊天。"],
+  ["遇過最大的颱風是哪一次？","那時候家裡有沒有淹水？"],
+  ["颱風過後大家怎麼整理？","鄰居互相幫忙，一起清理。"],
+  ["颱風天會不會放假？","小孩最開心了，可以待在家裡。"]]},
+ {t:"歌仔戲", k:"娛樂", q:[
+  ["你愛看歌仔戲嗎？","以前廟口、電視上都有，大家都很愛。"],
+  ["你最喜歡哪一位小生？","楊麗花、葉青，你迷哪一位？"],
+  ["你會唱歌仔戲的調嗎？","哼兩句給我聽好不好？"],
+  ["戲裡的故事你記得哪一齣？","陳三五娘、山伯英台，講給我聽。"],
+  ["看戲的時候會跟著哭嗎？","演到感人的地方，全場都在擦眼淚。"]]}
+]};
+
 (function(){
   // ---- 出題機 ----
   var mode="pair", ans="";
@@ -1033,6 +1354,83 @@ footer{font-size:.78rem;color:var(--muted);padding-block:22px}
   $("deal").addEventListener("click",deal);
   $("showA").addEventListener("click",function(){$("da").hidden=false;if(mode==="clue"){var n=parseInt(ans.replace(/\D/g,""));document.querySelectorAll("#dcards span").forEach(function(s){if(+s.textContent===n)s.className="hl"})}});
   deal();
+
+
+  // ---- 居家聊天資料庫 ----
+  var cat="north",cur=0;
+  function topics(){$("ctopics").innerHTML=CHAT[cat].map(function(t,i){return '<button type="button" data-i="'+i+'" aria-pressed="'+(i===cur)+'">'+t.t+'<small>'+t.k+'</small></button>'}).join("")}
+  function panel(){var t=CHAT[cat][cur];$("cpanel").innerHTML='<h4>'+t.t+'<small>'+t.k+'</small></h4><ol class="cq">'+t.q.map(function(x,j){return '<li><span class="qq">'+x[0]+'</span><button type="button" data-r="'+j+'" aria-expanded="false">看接話</button><span class="rr" id="rr'+j+'" hidden>'+x[1]+'</span></li>'}).join("")+'</ol><div class="row"><button type="button" class="btn" id="cAll">全部展開接話</button><button type="button" class="btn" id="cNext">下一個主題 →</button></div>'}
+  function go(i){cur=(i+CHAT[cat].length)%CHAT[cat].length;topics();panel()}
+  document.querySelectorAll(".chatdb [data-cat]").forEach(function(b){b.addEventListener("click",function(){document.querySelectorAll(".chatdb [data-cat]").forEach(function(x){x.setAttribute("aria-pressed",x===b)});cat=b.dataset.cat;go(0)})});
+  $("ctopics").addEventListener("click",function(e){var b=e.target.closest("button");if(b)go(+b.dataset.i)});
+  $("cpanel").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;
+    if(b.dataset.r!=null){var r=$("rr"+b.dataset.r);r.hidden=!r.hidden;b.textContent=r.hidden?"看接話":"收起";b.setAttribute("aria-expanded",!r.hidden)}
+    else if(b.id==="cAll"){document.querySelectorAll(".cq .rr").forEach(function(r){r.hidden=false});document.querySelectorAll(".cq [data-r]").forEach(function(x){x.textContent="收起";x.setAttribute("aria-expanded","true")})}
+    else if(b.id==="cNext")go(cur+1)});
+  $("chatRand").addEventListener("click",function(){go(Math.floor(Math.random()*CHAT[cat].length))});
+  go(0);
+
+
+  // ---- 簡報模式：一頁一頁 16:9 ----
+  var slides=[],si=0,moved=[],KEYS="lixin-slide";
+  function sBuild(){
+    slides=[];
+    var hero=document.querySelector("header.hero");if(hero)slides.push({n:[hero]});
+    var sp=document.querySelector("section.speaker");if(sp)slides.push({n:[sp]});
+    var blocks=[].slice.call(document.querySelectorAll("section.part"));
+    var agenda=document.querySelector(".agenda");
+    blocks.forEach(function(sec,idx){
+      if(idx===1&&agenda)slides.push({n:[agenda.parentNode]});
+      var w=sec.querySelector(".wrap");var kids=[].slice.call(w.children);var pend=[];
+      kids.forEach(function(k){
+        if(k.classList.contains("phead")){slides.push({n:[k],cover:true});return}
+        var small=k.classList.contains("toolhead")||(k.tagName==="P"&&k.classList.contains("intro"));
+        pend.push(k);
+        if(!small){slides.push({n:pend});pend=[]}
+      });
+      if(pend.length)slides.push({n:pend});
+    });
+    var cl=document.querySelector("section.closing");if(cl)slides.push({n:[cl]});
+  }
+  function sRestore(){moved.forEach(function(m){m.ph.parentNode.insertBefore(m.el,m.ph);m.ph.remove()});moved=[]}
+  function sFit(){
+    var vw=window.innerWidth,vh=window.innerHeight,W=Math.min(vw,vh*16/9),H=W*9/16;
+    var fr=$("frame");fr.style.width=W+"px";fr.style.height=H+"px";$("canvas").style.transform="scale("+(W/1280)+")";
+    var sl=$("slide");sl.style.transform="none";sl.style.width="1280px";
+    var k=Math.min(1,720/sl.scrollHeight);
+    for(var it=0;it<3;it++){sl.style.width=(1280/k)+"px";var nk=Math.min(1,k*720/(sl.scrollHeight*k));if(Math.abs(nk-k)<.005)break;k=nk}
+    var h2=sl.scrollHeight;k=Math.min(k,720/h2);
+    sl.style.transform="scale("+k+")";sl.style.top=Math.max(0,(720-h2*k)/2)+"px";sl.style.left=Math.max(0,(1280-parseFloat(sl.style.width)*k)/2)+"px";
+  }
+  function sShow(i){
+    sRestore();si=Math.max(0,Math.min(slides.length-1,i));var s=slides[si],sl=$("slide");
+    sl.className="slide"+(s.cover?" cover":"");
+    s.n.forEach(function(el){var ph=document.createComment("slot");el.parentNode.insertBefore(ph,el);moved.push({el:el,ph:ph});sl.appendChild(el)});
+    $("sNum").textContent=(si+1)+" / "+slides.length;$("sprog").style.width=((si+1)/slides.length*100)+"%";
+    try{localStorage.setItem(KEYS,si)}catch(e){}
+    sFit();
+  }
+  function sEnter(){if(!slides.length)sBuild();var st=0;try{st=+localStorage.getItem(KEYS)||0}catch(e){}
+    document.body.classList.add("presenting");$("stage").hidden=false;$("presBtn").hidden=true;sShow(st)}
+  function sExit2(){sRestore();$("stage").hidden=true;$("presBtn").hidden=false;document.body.classList.remove("presenting");
+    try{if(document.fullscreenElement)document.exitFullscreen()}catch(e){}
+    var s=slides[si];if(s&&s.n[0])s.n[0].scrollIntoView({block:"start"})}
+  $("presBtn").addEventListener("click",sEnter);
+  $("sExit").addEventListener("click",sExit2);
+  $("sPrev").addEventListener("click",function(){sShow(si-1)});
+  $("sNext").addEventListener("click",function(){sShow(si+1)});
+  $("sFull").addEventListener("click",function(){var d=document.documentElement;try{var p=document.fullscreenElement?document.exitFullscreen():d.requestFullscreen();if(p&&p.catch)p.catch(function(){})}catch(e){}});
+  window.addEventListener("resize",function(){if(!$("stage").hidden)sFit()});
+  $("slide").addEventListener("click",function(){setTimeout(sFit,30)});
+  $("slide").addEventListener("toggle",function(){setTimeout(sFit,30)},true);
+  document.addEventListener("keydown",function(e){if($("stage").hidden)return;var t=e.target.tagName;if(t==="INPUT"||t==="TEXTAREA"||t==="SELECT")return;
+    if(e.key==="ArrowRight"||e.key==="PageDown"||e.key===" "){e.preventDefault();sShow(si+1)}
+    else if(e.key==="ArrowLeft"||e.key==="PageUp"){e.preventDefault();sShow(si-1)}
+    else if(e.key==="Home")sShow(0);else if(e.key==="End")sShow(slides.length-1);
+    else if(e.key==="Escape"&&!document.fullscreenElement)sExit2()});
+  var tx=null;$("stage").addEventListener("touchstart",function(e){tx=e.touches[0].clientX},{passive:true});
+  $("stage").addEventListener("touchend",function(e){if(tx==null)return;var dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>50)sShow(si+(dx<0?1:-1));tx=null},{passive:true});
+  if(location.hash==="#present")sEnter();
 
   // ---- 複製提示詞 ----
   document.querySelectorAll("[data-copy]").forEach(function(b){b.addEventListener("click",function(){var el=$(b.dataset.copy);var t=el.textContent;
