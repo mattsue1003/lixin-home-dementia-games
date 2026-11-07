@@ -287,7 +287,7 @@ footer{font-size:.78rem;color:var(--muted);padding-block:22px}
 .slide>.speaker{border-top:0;padding-block:0}
 .slide>section.closing{margin-top:0}
 .slide .phead{margin-bottom:0}
-.slide.cover .phead{margin-top:180px}
+
 .slide.cover .phead .pno{font-size:7rem}
 .slide.cover .phead h2{font-size:3rem}
 .sbar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(10px + env(safe-area-inset-bottom,0px));display:flex;justify-content:center;align-items:center;gap:8px;padding:6px 10px;border-radius:99px;background:rgba(31,42,43,.85);z-index:51;opacity:.4;transition:opacity .2s;max-width:calc(100vw - 24px);flex-wrap:wrap}
@@ -298,6 +298,96 @@ footer{font-size:.78rem;color:var(--muted);padding-block:22px}
 body.presenting{overflow:hidden}
 @media (max-height:500px){.sbar{gap:4px;padding:4px 6px}.sbar button{padding:3px 10px;font-size:.76rem}.sbar span{font-size:.75rem;min-width:52px}}
 @media print{.presbtn,.stage{display:none!important}}
+
+/* ===== readability: bigger type, stronger contrast, adjustable size ===== */
+html{font-size:calc(16px*var(--fs,1.06))}
+body{font-size:1.0625rem;line-height:1.9}
+:root{--muted:#544D4B}
+h4{font-size:1.12rem}
+code{font-size:.84rem}
+.eyebrow{font-size:.82rem}
+.note,.src,.deckcap,footer{font-size:.92rem}
+.lead{font-size:1.08rem}
+.facts{font-size:1.02rem}
+.agenda b{font-size:.9rem}.agenda span{font-size:1rem}
+.sub>h3{font-size:1.5rem}
+.sub>h3 small{font-size:.76rem}
+.sub>p.intro{max-width:54em;color:var(--ink);opacity:.86;font-size:1.04rem}
+table{font-size:1rem}
+.fn .q{font-size:.95rem}
+.lesson summary b{font-size:1.16rem}
+.lesson h5{font-size:.98rem}
+.chip{font-size:.82rem;padding:2px 10px}
+.lv{font-size:1rem}
+.seg button,.btn{font-size:1rem;min-height:44px;padding:8px 18px}
+.steps div,.song div,.flow div,.grade{font-size:1rem}
+.cue span{font-size:.98rem}
+.tbody p{font-size:.96rem}
+.tag{font-size:.8rem}
+.tfoot .url{font-size:.78rem}
+.more code{font-size:.8rem}
+.toolhead h3{font-size:1.25rem}.toolhead span{font-size:.96rem}
+.prompt pre{font-size:1rem}
+.coverqr span{font-size:.92rem}
+.roles{font-size:1.02rem}
+.sptags span{font-size:.86rem}
+.fbcard small{font-size:.88rem}
+.closing .qrbox{font-size:.95rem}
+.ctopics button{font-size:1rem;min-height:44px}
+.ctopics button small{font-size:.78rem}
+.cq .qq{font-size:1.18rem}
+.cq .rr{font-size:1.04rem}
+.cq button{font-size:.9rem;min-height:36px;padding:4px 14px}
+.lesson summary{padding:18px 22px}
+@media (min-width:901px){.hero{grid-template-columns:1.3fr .7fr;gap:56px}}
+.hero h1{font-size:clamp(1.9rem,3.7vw,3.2rem)}
+.hero .deck{max-width:340px}
+.hero .coverqr{max-width:340px}
+@media (min-width:561px){.hero h1 .l1{white-space:nowrap}}
+@media (max-width:900px){.hero .deck{max-width:300px}}
+@media (max-width:560px){.hero .deck{max-width:240px;gap:7px}.deck span{font-size:1.25rem}.presbtn{bottom:calc(12px + env(safe-area-inset-bottom,0px))}}
+/* text-size control */
+.fsz{display:flex;align-items:center;gap:4px;margin-left:12px;flex:none}
+.fsz span{font-size:.82rem;color:var(--muted);margin-right:2px}
+.fsz button{font:inherit;font-size:.86rem;min-width:40px;min-height:36px;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:8px;cursor:pointer;padding:0 6px}
+.fsz button[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:#fff}
+@media (max-width:900px){
+  .navbar{flex-wrap:wrap;row-gap:4px}
+  .navbar nav{display:flex!important;order:3;width:100%;margin-left:0;overflow-x:auto;flex-wrap:nowrap;gap:2px 16px;padding:2px 0 6px;font-size:.95rem;-webkit-overflow-scrolling:touch}
+  .navbar nav a{padding:4px 0}
+  .fsz{margin-left:auto}
+  html{scroll-padding-top:130px}
+}
+@media (max-width:560px){
+  body{font-size:1rem}
+  .fsz span{display:none}
+  .sub>h3{font-size:1.32rem}
+  .phead h2{font-size:1.45rem}
+  .box{padding:18px}
+  .presbtn{padding:10px 14px;font-size:.9rem}
+}
+/* slide mode: larger, balanced */
+html.presenting{--fs:var(--sfs,1.3)}
+.slide{font-size:1.0625rem;padding:48px 72px 72px}
+.slide .sub>p.intro{max-width:none}
+.slide .lead{max-width:none}
+.slide.cover .phead{margin:0 auto;width:max-content;max-width:100%}
+.slide.scroll{overflow-y:auto;height:720px;overscroll-behavior:contain}
+.sbar .szb{min-width:44px}
+.slide .hero{grid-template-columns:1.35fr .65fr;gap:56px}
+.slide .hero h1{font-size:3.1rem}
+.slide .deck{max-width:330px;gap:8px}
+.slide .deck span{font-size:1.7rem}
+.slide .deckcap{display:none}
+.slide .coverqr{max-width:330px;margin-top:14px}
+.slide .coverqr .qr{width:92px;height:92px}
+.slide .ctopics{gap:6px}
+.slide .ctopics button{font-size:.92rem;min-height:0;padding:4px 10px}
+.slide .ctopics button small{display:none}
+.slide .chatdb{gap:12px;padding:16px 20px}
+.slide .tools{grid-template-columns:repeat(5,1fr);gap:14px}.slide .tbody{padding:10px 12px 12px}.slide .tbody h4{font-size:.95rem}.slide .tbody p{font-size:.78rem}.slide .tag{font-size:.68rem}.slide .tfoot .url{font-size:.6rem}.slide .tool .qr{width:64px;height:64px}
+.slide .more{grid-template-columns:repeat(2,1fr)}
+.slide .cq{gap:6px}.slide .cq li{padding:8px 14px}
 </style>
 </head><body>
 
@@ -306,12 +396,13 @@ body.presenting{overflow:hidden}
   <nav aria-label="簡報目錄">
     <a href="#p1">非藥物照護</a><a href="#p2">體智遊戲</a><a href="#p3">一起動一動</a><a href="#p4">家屬與紀錄</a><a href="#ai">AI 體驗</a><a href="#res">資源</a>
   </nav>
+  <div class="fsz" role="group" aria-label="字級大小"><span>字級</span><button type="button" data-fs="0.96" aria-pressed="false">小</button><button type="button" data-fs="1.06" aria-pressed="true">中</button><button type="button" data-fs="1.2" aria-pressed="false">大</button><button type="button" data-fs="1.36" aria-pressed="false">特大</button></div>
 </div></div></div>
 
 <header class="wrap hero">
   <div>
     <p class="eyebrow">Dementia Care at Home · One-on-One</p>
-    <h1>居家多元<em>體智遊戲</em>設計<br><span style="font-size:.62em">失智症的非藥物照護</span></h1>
+    <h1><span class="l1">居家多元<em>體智遊戲</em>設計</span><br><span style="font-size:.62em">失智症的非藥物照護</span></h1>
     <p class="lead">居服員跟個案常常是一對一、在個案家裡、時間不長。一副 1–16 數字牌、一副撲克牌、家裡現成的東西和一首老歌，就能在照顧的空檔帶出動腦、動身、也安心的時光。</p>
     <dl class="facts">
       <dt>時間</dt><dd>2026 年 11 月 7 日（六）13:45–16:45</dd>
@@ -1083,7 +1174,7 @@ body.presenting{overflow:hidden}
 <div class="stage" id="stage" hidden role="dialog" aria-label="簡報模式">
   <div class="sprog" id="sprog"></div>
   <div class="frame" id="frame"><div class="canvas" id="canvas"><div class="slide" id="slide"></div></div></div>
-  <div class="sbar"><button type="button" id="sPrev" aria-label="上一頁">‹ 上一頁</button><span id="sNum">1 / 1</span><button type="button" id="sNext" aria-label="下一頁">下一頁 ›</button><button type="button" id="sFull">全螢幕</button><button type="button" id="sExit">離開 ✕</button></div>
+  <div class="sbar"><button type="button" id="sPrev" aria-label="上一頁">‹ 上一頁</button><span id="sNum">1 / 1</span><button type="button" id="sNext" aria-label="下一頁">下一頁 ›</button><button type="button" class="szb" id="sSmall" aria-label="字變小">A−</button><button type="button" class="szb" id="sBig" aria-label="字變大">A＋</button><button type="button" id="sFull">全螢幕</button><button type="button" id="sExit">離開 ✕</button></div>
 </div>
 <script>
 // 居家聊天資料庫：每個主題 5 題提問＋居服員可以這樣接話（r）
@@ -1396,11 +1487,12 @@ common: [
   function sFit(){
     var vw=window.innerWidth,vh=window.innerHeight,W=Math.min(vw,vh*16/9),H=W*9/16;
     var fr=$("frame");fr.style.width=W+"px";fr.style.height=H+"px";$("canvas").style.transform="scale("+(W/1280)+")";
-    var sl=$("slide");sl.style.transform="none";sl.style.width="1280px";
-    var k=Math.min(1,720/sl.scrollHeight);
-    for(var it=0;it<3;it++){sl.style.width=(1280/k)+"px";var nk=Math.min(1,k*720/(sl.scrollHeight*k));if(Math.abs(nk-k)<.005)break;k=nk}
-    var h2=sl.scrollHeight;k=Math.min(k,720/h2);
-    sl.style.transform="scale("+k+")";sl.style.top=Math.max(0,(720-h2*k)/2)+"px";sl.style.left=Math.max(0,(1280-parseFloat(sl.style.width)*k)/2)+"px";
+    var sl=$("slide");sl.classList.remove("scroll");sl.style.transform="none";sl.style.width="1280px";sl.style.height="auto";sl.style.top="0";sl.style.left="0";sl.scrollTop=0;
+    var h=sl.scrollHeight;
+    if(h<=720){sl.style.top=((720-h)/2)+"px";return}
+    if(h<=720/0.8){var k=720/h;sl.style.width=(1280/k)+"px";h=sl.scrollHeight;k=Math.min(k,720/h);
+      sl.style.transform="scale("+k+")";sl.style.top=Math.max(0,(720-h*k)/2)+"px";return}
+    sl.classList.add("scroll");sl.style.height="720px";
   }
   function sShow(i){
     sRestore();si=Math.max(0,Math.min(slides.length-1,i));var s=slides[si],sl=$("slide");
@@ -1411,8 +1503,8 @@ common: [
     sFit();
   }
   function sEnter(){if(!slides.length)sBuild();var st=0;try{st=+localStorage.getItem(KEYS)||0}catch(e){}
-    document.body.classList.add("presenting");$("stage").hidden=false;$("presBtn").hidden=true;sShow(st)}
-  function sExit2(){sRestore();$("stage").hidden=true;$("presBtn").hidden=false;document.body.classList.remove("presenting");
+    document.body.classList.add("presenting");root.classList.add("presenting");$("stage").hidden=false;$("presBtn").hidden=true;sShow(st)}
+  function sExit2(){sRestore();$("stage").hidden=true;$("presBtn").hidden=false;document.body.classList.remove("presenting");root.classList.remove("presenting");
     try{if(document.fullscreenElement)document.exitFullscreen()}catch(e){}
     var s=slides[si];if(s&&s.n[0])s.n[0].scrollIntoView({block:"start"})}
   $("presBtn").addEventListener("click",sEnter);
@@ -1426,10 +1518,23 @@ common: [
   document.addEventListener("keydown",function(e){if($("stage").hidden)return;var t=e.target.tagName;if(t==="INPUT"||t==="TEXTAREA"||t==="SELECT")return;
     if(e.key==="ArrowRight"||e.key==="PageDown"||e.key===" "){e.preventDefault();sShow(si+1)}
     else if(e.key==="ArrowLeft"||e.key==="PageUp"){e.preventDefault();sShow(si-1)}
+    else if(e.key==="+"||e.key==="="){setSfs(sfs+.15)}else if(e.key==="-"){setSfs(sfs-.15)}
     else if(e.key==="Home")sShow(0);else if(e.key==="End")sShow(slides.length-1);
     else if(e.key==="Escape"&&!document.fullscreenElement)sExit2()});
   var tx=null;$("stage").addEventListener("touchstart",function(e){tx=e.touches[0].clientX},{passive:true});
   $("stage").addEventListener("touchend",function(e){if(tx==null)return;var dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>50)sShow(si+(dx<0?1:-1));tx=null},{passive:true});
+
+
+  // ---- 字級 ----
+  var FSK="lixin-fs",SFK="lixin-sfs",root=document.documentElement;
+  function setFs(v){root.style.setProperty("--fs",v);document.querySelectorAll(".fsz [data-fs]").forEach(function(b){b.setAttribute("aria-pressed",b.dataset.fs===String(v))});try{localStorage.setItem(FSK,v)}catch(e){}}
+  document.querySelectorAll(".fsz [data-fs]").forEach(function(b){b.addEventListener("click",function(){setFs(b.dataset.fs)})});
+  try{var fv=localStorage.getItem(FSK);if(fv)setFs(fv)}catch(e){}
+  var sfs=1.3;try{sfs=+localStorage.getItem(SFK)||1.3}catch(e){}
+  function setSfs(v){sfs=Math.max(1,Math.min(1.9,Math.round(v*100)/100));root.style.setProperty("--sfs",sfs);try{localStorage.setItem(SFK,sfs)}catch(e){}if(!$("stage").hidden)sFit()}
+  setSfs(sfs);
+  $("sSmall").addEventListener("click",function(){setSfs(sfs-.15)});
+  $("sBig").addEventListener("click",function(){setSfs(sfs+.15)});
   if(location.hash==="#present")sEnter();
 
   // ---- 複製提示詞 ----
